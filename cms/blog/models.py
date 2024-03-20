@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import uuid
+from django.contrib.auth.models import UserManager
 
 # Create your models here.
 
@@ -14,24 +16,28 @@ class BaseModel(models.Model):
 class User(BaseModel, AbstractUser):
     """User model
     """
-    USER_TYPES = (
-                  ('A', 'Author'),
-                  ('R', 'Reader')
-                 )
     firstname = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
-    user_type = models.CharField(choices=USER_TYPES)
     email = models.EmailField(max_length=250)
     password = models.CharField(max_length=128)
     bio = models.CharField(max_length=250, blank=True)
+    profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
 
-class Article(BaseModel):
-    """Article model
+    objects = UserManager()
+
+class Post(BaseModel):
+    """Post model
     """
     title = models.CharField(max_length=200)
     quote = models.TextField(max_length=300)
     content = models.TextField()
-    image = models.ImageField(upload_to='images', null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=False, blank=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 
+class Comments(BaseModel):
+    """Comment model
+    """
+    content = models.TextField(max_length=300)
+    article_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
 
 

@@ -1,1 +1,5 @@
 env/*
+blog/__pycache__/*
+cms/cms/__pycache__/*
+cms/blog/__pycache__/*
+cms/blog/migrations/__pycache__/*
