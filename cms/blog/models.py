@@ -35,11 +35,9 @@ class Post(BaseModel):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 
 
-"""
 class Comments(BaseModel):
-    
-   
+    """Comments model
+    """
     content = models.TextField(max_length=300)
-   article_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-"""
+    article_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
 
