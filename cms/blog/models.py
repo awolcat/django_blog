@@ -34,10 +34,12 @@ class Post(BaseModel):
     image = models.ImageField(upload_to='images/', null=False, blank=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 
-class Comments(BaseModel):
-    """Comment model
-    """
-    content = models.TextField(max_length=300)
-    article_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
 
+"""
+class Comments(BaseModel):
+    
+   
+    content = models.TextField(max_length=300)
+   article_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+"""
 
