@@ -1,14 +1,15 @@
 from django import forms
-from .models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+#from .models import User
 
 # Register the form for author signup
-class UserForm(forms.ModelForm):
+class UserForm(UserCreationForm):
   class Meta:
     model = User
-    fields = ['firstname', 'lastname', 'email', 'password']
+    fields = ['username', 'first_name', 'last_name', 'email']
 
 # Register the form for author login
-class LoginForm(forms.ModelForm):
-  class Meta:
-    model = User
-    fields = ['email', 'password']
+class LoginForm(forms.Form):
+  username = forms.CharField()
+  password = forms.CharField(widget=forms.PasswordInput)

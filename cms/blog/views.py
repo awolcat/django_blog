@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UserForm, LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as django_login
 from django.contrib import messages
 
 
@@ -28,13 +28,18 @@ def signup(request):
 
 def login(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
-            login(request, user)
-            # Redirect to a success page
-            return redirect('') 
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                django_login(request, user)
+                # Redirect to a success page
+                return redirect('') 
+            else:
+                messages.error(request, 'Invalid username or password.')
         else:
-            messages.error(request, 'Invalid email or password.')
-        return render(request, 'login.html')
+            print('Inalid form')
+    form = LoginForm()
+    return render(request, 'login.html', {'form': form})
