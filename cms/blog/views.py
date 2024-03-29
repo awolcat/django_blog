@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import UserForm, LoginForm
-from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib import messages
+from .forms import UserForm, LoginForm
+from .models import Post
 
 
 # Create your views here.
@@ -10,7 +11,9 @@ from django.contrib import messages
 def index(request):
     """Index page
     """
-    return render(request, 'base.html')
+    articles = Post.objects.all()
+    print(type(articles))
+    return render(request, 'index.html', {'articles': articles})
 
 
 def signup(request):
@@ -43,3 +46,7 @@ def login(request):
             print('Inalid form')
     form = LoginForm()
     return render(request, 'login.html', {'form': form})
+
+def logout(request):
+    django_logout(request)
+    return redirect('')
