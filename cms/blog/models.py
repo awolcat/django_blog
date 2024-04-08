@@ -1,5 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
+
+class CategoriesEnum(models.TextChoices):
+    LIFESTYLE = 'LS', _('Lifestyle')
+    WORLD = 'W', _('World')
+    BUSINESS = 'BS', _('Business')
+    TECH = 'TC', _('Tech')    
+
+
 
 class BaseModel(models.Model):
     """Base model
@@ -19,6 +28,7 @@ class Post(BaseModel, models.Model):
     content = models.TextField()
     image = models.ImageField(upload_to='images/', null=False, blank=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    category = models.CharField(max_length=2, choices=CategoriesEnum.choices, default=CategoriesEnum.TECH)
 
     def __str__(self):
         return self.title

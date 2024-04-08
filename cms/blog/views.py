@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib import messages
-from .forms import UserForm, LoginForm
+from .forms import UserForm, LoginForm, PostForm
 from .models import Post
 
 
