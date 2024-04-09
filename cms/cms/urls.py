@@ -25,7 +25,9 @@ urlpatterns = [
     path('', blog_views.index, name=''),
     path('signup/', blog_views.signup, name='signup'),  
     path('login/', blog_views.login, name='login'),
-    path('logout/', blog_views.logout, name='logout')
+    path('logout/', blog_views.logout, name='logout'),
+    path('create_post/', blog_views.create_post, name='create_post'),
+    path('post/<int:pk>/', blog_views.post_detail, name='post_detail'),
 ]
 
 if settings.DEBUG:

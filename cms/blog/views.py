@@ -27,8 +27,6 @@ def signup(request):
         form = UserForm()
     return render(request, 'signup.html', {'form': form})
 
-
-
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -50,3 +48,19 @@ def login(request):
 def logout(request):
     django_logout(request)
     return redirect('')
+
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            # Redirect to the post detail page
+            return redirect('')
+    else:
+        form = PostForm()
+        
+    return render(request, 'create_post.html', {'form': form})
+
+def post_detail(request, pk):
+    post = Post.objects.get(pk=pk)
+    return render(request, 'post_detail.html', {'post': post})
