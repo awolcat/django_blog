@@ -13,7 +13,10 @@ def index(request):
     """
     articles = Post.objects.all()
     recent_articles = Post.objects.order_by('-created_at')[:3]
-    return render(request, 'index.html', {'articles': articles, 'recent_articles': recent_articles})
+    featured_article = Post.objects.order_by('-views').first()
+    return render(request, 'index.html', {'articles': articles,
+                                          'recent_articles': recent_articles,
+                                          'featured_article': featured_article})
 
 
 def signup(request):
@@ -63,4 +66,6 @@ def create_post(request):
 
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
+    post.views += 1
+    post.save()
     return render(request, 'post_detail.html', {'post': post})

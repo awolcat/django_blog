@@ -29,6 +29,7 @@ class Post(BaseModel, models.Model):
     image = models.ImageField(upload_to='images/', null=False, blank=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     category = models.CharField(max_length=2, choices=CategoriesEnum.choices, default=CategoriesEnum.TECH)
+    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
