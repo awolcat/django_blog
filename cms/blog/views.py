@@ -12,8 +12,8 @@ def index(request):
     """Index page
     """
     articles = Post.objects.all()
-    print(type(articles))
-    return render(request, 'index.html', {'articles': articles})
+    recent_articles = Post.objects.order_by('-created_at')[:3]
+    return render(request, 'index.html', {'articles': articles, 'recent_articles': recent_articles})
 
 
 def signup(request):
@@ -55,7 +55,7 @@ def create_post(request):
         if form.is_valid():
             post = form.save()
             # Redirect to the post detail page
-            return redirect('')
+            return redirect('/post/{}'.format(post.pk))
     else:
         form = PostForm()
         
