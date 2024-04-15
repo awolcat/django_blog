@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Comments
 #from .models import User
 
 # Register the form for author signup
@@ -20,3 +20,9 @@ class PostForm(forms.ModelForm):
   class Meta:
     model = Post
     fields = ['title', 'quote', 'content', 'image', 'author', 'category']
+
+# Register the form for creating a comment
+class CommentsForm(forms.ModelForm):
+  class Meta:
+    model = Comments
+    fields = ['article_post', 'content']

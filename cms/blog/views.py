@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib import messages
-from .forms import UserForm, LoginForm, PostForm
-from .models import Post
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from .forms import UserForm, LoginForm, PostForm, CommentsForm
+from .models import Post, Comments
 
 
 # Create your views here.
@@ -48,10 +50,12 @@ def login(request):
     form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
+@login_required
 def logout(request):
     django_logout(request)
     return redirect('')
 
+@login_required
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -61,11 +65,25 @@ def create_post(request):
             return redirect('/post/{}'.format(post.pk))
     else:
         form = PostForm()
-        
     return render(request, 'create_post.html', {'form': form})
 
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
     post.views += 1
     post.save()
-    return render(request, 'post_detail.html', {'post': post})
+    comments = Comments.objects.all()
+    form = CommentsForm()
+    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'form': form})
+
+def comments(request):
+    if request.method == 'POST':
+        #data = {'post': request.headers['Referer'].split('/')[4], 'content': request.POST.content}
+        request_data = request.POST.copy()
+        request_data.__setitem__('article_post', request.headers['Referer'].split('/')[4])
+        form = CommentsForm(request_data)
+        print(request_data)
+        if form.is_valid():
+            comment = form.save()
+            # Redirect to the post detail page
+            print(request.headers)
+            return redirect('/post/1')

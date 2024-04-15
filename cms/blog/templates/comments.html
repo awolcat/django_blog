@@ -1,0 +1,16 @@
+{% extends 'post_detail.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block comment %}
+  <div class="row justify-content-center align-items-center">
+    <div class="col-sm-5">
+      <h1>Comments</h1>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit">Comment</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

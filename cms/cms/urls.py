@@ -28,6 +28,7 @@ urlpatterns = [
     path('logout/', blog_views.logout, name='logout'),
     path('create_post/', blog_views.create_post, name='create_post'),
     path('post/<int:pk>/', blog_views.post_detail, name='post_detail'),
+    path('comment/', blog_views.comments, name='comment'),
 ]
 
 if settings.DEBUG:
