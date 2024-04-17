@@ -26,3 +26,13 @@ class CommentsForm(forms.ModelForm):
   class Meta:
     model = Comments
     fields = ['article_post', 'content']
+  
+  def __init__(self, *args, **kwargs):
+    article_post = kwargs.pop('article_post')
+    article_post = Post.objects.get(pk=article_post)
+    super(CommentsForm, self).__init__(*args, **kwargs)
+    self.fields['article_post'].widget = forms.HiddenInput()
+    self.fields['article_post'].required = True
+    self.fields['article_post'].label = ''
+    self.fields['content'].widget.attrs['placeholder'] = 'Write a comment...'
+    self.fields['content'].label = ''

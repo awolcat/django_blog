@@ -71,19 +71,23 @@ def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
     post.views += 1
     post.save()
-    comments = Comments.objects.all()
-    form = CommentsForm()
+    comments = post.comments.all()
+    form = CommentsForm(article_post=post.id)
+    
     return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'form': form})
 
 def comments(request):
     if request.method == 'POST':
         #data = {'post': request.headers['Referer'].split('/')[4], 'content': request.POST.content}
         request_data = request.POST.copy()
-        request_data.__setitem__('article_post', request.headers['Referer'].split('/')[4])
-        form = CommentsForm(request_data)
-        print(request_data)
+        article_post = int(request.headers['Referer'].split('/')[4])
+        request_data['article_post'] = article_post
+        form = CommentsForm(request_data, article_post=article_post)
         if form.is_valid():
-            comment = form.save()
+            comment = form.save(commit=False)
+            comment.article_post = Post.objects.get(pk=article_post)
+            comment.save()
             # Redirect to the post detail page
-            print(request.headers)
-            return redirect('/post/1')
+            #print(request.headers)
+            return redirect(f'/post/{article_post}')
+        

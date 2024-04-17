@@ -20,6 +20,12 @@
           <button type="submit">Comment</button>
         </form>
         {% for comment in comments %}
+        {% if comment.author %}
+          <h3>{{ comment.author }}</h3>
+        {% else %}
+          <h3>Anon</h3>
+        {% endif %}
+        <small>{{ comment.created_at }}</small>
           <p>{{ comment.content }}</p>
         {% endfor %}
       </div>
