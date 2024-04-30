@@ -55,12 +55,21 @@ def logout(request):
     django_logout(request)
     return redirect('')
 
-@login_required
+# @login_required
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save()
+            cleaned_data = form.cleaned_data
+            post = Post(
+                title=cleaned_data['title'],
+                quote=cleaned_data['quote'],
+                content=cleaned_data['content'],
+                image=cleaned_data['image'],
+                author=request.user,
+                category=cleaned_data['category']
+            )
+            post.save()
             # Redirect to the post detail page
             return redirect('/post/{}'.format(post.pk))
     else:

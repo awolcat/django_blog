@@ -19,6 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from blog import views as blog_views
+from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,8 +30,9 @@ urlpatterns = [
     path('create_post/', blog_views.create_post, name='create_post'),
     path('post/<int:pk>/', blog_views.post_detail, name='post_detail'),
     path('comment/', blog_views.comments, name='comment'),
+    path('tinymce/', include('tinymce.urls')),
 ]
-
+print(blog_views.comments)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

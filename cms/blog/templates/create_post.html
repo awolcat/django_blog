@@ -2,9 +2,16 @@
 
 {% load crispy_forms_tags %}
 
+{% block head %}
+  {{ form.media}}
+{% endblock %}
+
 {% block body %}
+  {% for txt in text %}
+  <p> {{txt.content|safe}} </p>
+  {% endfor %}
   <div class="row justify-content-center align-items-center">
-    <div class="col-sm-5">
+    <div class="">
       <h1>Publish</h1>
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -13,4 +20,7 @@
       </form>
     </div>
   </div>
+{% endblock %}
+{% block scripts %}
+  <script src="/static/scripts/uploader.js"></script>
 {% endblock %}

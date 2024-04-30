@@ -2,7 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Post, Comments
-#from .models import User
+from django.db import models
+from tinymce.widgets import TinyMCE
+
 
 # Register the form for author signup
 class UserForm(UserCreationForm):
@@ -16,10 +18,12 @@ class LoginForm(forms.Form):
   password = forms.CharField(widget=forms.PasswordInput)
 
 # Register the form for creating a post
-class PostForm(forms.ModelForm):
-  class Meta:
-    model = Post
-    fields = ['title', 'quote', 'content', 'image', 'author', 'category']
+class PostForm(forms.Form):
+    content = forms.CharField(widget=TinyMCE)
+    title = forms.CharField()
+    quote = forms.CharField()
+    image = forms.ImageField()
+    category = forms.ChoiceField(choices=Post.CategoriesEnum.choices) 
 
 # Register the form for creating a comment
 class CommentsForm(forms.ModelForm):
