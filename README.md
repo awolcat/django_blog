@@ -12,15 +12,24 @@ This is a basic Django blog application that allows users to read articles and s
 ## Usage
 
 - **Homepage: Displays a list of all published articles.**
-![Image Description](./screenshots/home.png)
+
+![Home](./screenshots/home.png)
 
 - **Article Detail: Click on an article title to read the full article.**
-![Image Description](path/to/image.png)
+
+![Detail page](./screenshots/detail.png)
+
+- **Comments: Leave a comment on an article by filling out the comment form at the bottom of the page.**
+
+![Comment form](./screenshots/comment.png)
 
 - **Sign Up / Login: Use the links on the homepage to sign up for a new account or log in with an existing account.**
-![Image Description](path/to/image.png) ![Image Description](path/to/image.png)
+
+![Sign up](./screenshots/signup.png) ![Login](./screenshots/login.png)
 
 - **Create Article: After logging in, you can create a new article by clicking on the "Publish" link.**
+
+![Publish page](./screenshots/publish.png)
 
 ## Requirements
 
@@ -71,16 +80,16 @@ python manage.py runserver
 7. Open your browser and visit http://127.0.0.1:8000/
 
 
-Contributing
+## Contributing
 If you want to contribute to this project, please follow these steps:
 
-Fork the repository.
-Create a new branch: git checkout -b my-feature-branch
-Make your changes and commit them: git commit -m 'Add some feature'
-Push to the branch: git push origin my-feature-branch
-Submit a pull request.
-License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+- Fork the repository.
+- Create a new branch: git checkout -b my-feature-branch
+- Make your changes and commit them: git commit -m 'Add some feature'
+- Push to the branch: git push origin my-feature-branch
+- Submit a pull request.
+- License
+- This project is licensed under the MIT License. See the LICENSE file for more details.
 
-Contact
+## Contact
 If you have any questions or feedback, feel free to reach out to me at albertirura11@gmail.com.
