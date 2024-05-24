@@ -3,19 +3,31 @@
 This is a basic Django blog application that allows users to read articles and sign up to post their own articles. It provides a simple and intuitive interface for users to interact with blog posts, making it easy for anyone to contribute to the blog.
 
 ## Features
-**Read Articles:** Anyone can browse and read articles.
-**User Registration:** Users can sign up for an account.
-**Create Articles:** Registered users can create and publish their own articles.
-**Authentication:** Secure user authentication for sign up and login.
+- **Read Articles:** Anyone can browse and read articles.
+- **User Registration:** Users can sign up for an account.
+- **Create Articles:** Registered users can create and publish their own articles.
+- **Authentication:** Secure user authentication for sign up and login.
 
+## Usage
 
-# Requirements
+- **Homepage: Displays a list of all published articles.**
+![Image Description](/mnt/c/Users/Dell/Documents/KoderKo/'django blog port'/home.png)
+
+- **Article Detail: Click on an article title to read the full article.**
+![Image Description](path/to/image.png)
+
+- **Sign Up / Login: Use the links on the homepage to sign up for a new account or log in with an existing account.**
+![Image Description](path/to/image.png) ![Image Description](path/to/image.png)
+
+- **Create Article: After logging in, you can create a new article by clicking on the "Publish" link.**
+
+## Requirements
 
 - Python 3.9 or higher
 - Django 4.2
 - SQLite 3
 
-# Installation
+## Installation
 
 1. Clone the repository:
 
@@ -57,18 +69,6 @@ python manage.py runserver
 
 7. Open your browser and visit http://127.0.0.1:8000/
 
-## Usage
-
-- **Homepage: Displays a list of all published articles.**
-![Image Description](path/to/image.png)
-
-- **Article Detail: Click on an article title to read the full article.**
-![Image Description](path/to/image.png)
-
-- **Sign Up / Login: Use the links on the homepage to sign up for a new account or log in with an existing account.**
-![Image Description](path/to/image.png) ![Image Description](path/to/image.png)
-
-- **Create Article: After logging in, you can create a new article by clicking on the "Publish" link.**
 
 Contributing
 If you want to contribute to this project, please follow these steps:
@@ -82,4 +82,4 @@ License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 Contact
-If you have any questions or feedback, feel free to reach out to me at your-email@example.com.
+If you have any questions or feedback, feel free to reach out to me at albertirura11@gmail.com.
