@@ -11,23 +11,23 @@ This is a basic Django blog application that allows users to read articles and s
 
 ## Usage
 
-- **Homepage: Displays a list of all published articles.**
+### - **Homepage: Displays a list of all published articles.**
 
 ![Home](./screenshots/home.png)
 
-- **Article Detail: Click on an article title to read the full article.**
+### - **Article Detail: Click on an article title to read the full article.**
 
 ![Detail page](./screenshots/detail.png)
 
-- **Comments: Leave a comment on an article by filling out the comment form at the bottom of the page.**
+### - **Comments: Leave a comment on an article by filling out the comment form at the bottom of the page.**
 
 ![Comment form](./screenshots/comment.png)
 
-- **Sign Up / Login: Use the links on the homepage to sign up for a new account or log in with an existing account.**
+### - **Sign Up / Login: Use the links on the homepage to sign up for a new account or log in with an existing account.**
 
 ![Sign up](./screenshots/signup.png) ![Login](./screenshots/login.png)
 
-- **Create Article: After logging in, you can create a new article by clicking on the "Publish" link.**
+### - **Create Article: After logging in, you can create a new article by clicking on the "Publish" link.**
 
 ![Publish page](./screenshots/publish.png)
 
