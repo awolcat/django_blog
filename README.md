@@ -4,6 +4,7 @@ This is a basic Django blog application that allows users to read articles and s
 
 ## Features
 - **Read Articles:** Anyone can browse and read articles.
+- **Comment on Articles:** Users can leave comments on articles.
 - **User Registration:** Users can sign up for an account.
 - **Create Articles:** Registered users can create and publish their own articles.
 - **Authentication:** Secure user authentication for sign up and login.
@@ -11,7 +12,7 @@ This is a basic Django blog application that allows users to read articles and s
 ## Usage
 
 - **Homepage: Displays a list of all published articles.**
-![Image Description](/mnt/c/Users/Dell/Documents/KoderKo/'django blog port'/home.png)
+![Image Description](./screenshots/home.png)
 
 - **Article Detail: Click on an article title to read the full article.**
 ![Image Description](path/to/image.png)
