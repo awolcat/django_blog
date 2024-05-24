@@ -20,8 +20,6 @@ class LoginForm(forms.Form):
 # Register the form for creating a post
 class PostForm(forms.Form):
     content = forms.CharField(widget=TinyMCE)
-    title = forms.CharField()
-    quote = forms.CharField()
     image = forms.ImageField()
     category = forms.ChoiceField(choices=Post.CategoriesEnum.choices) 
 

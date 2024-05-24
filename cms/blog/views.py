@@ -62,8 +62,7 @@ def create_post(request):
         if form.is_valid():
             cleaned_data = form.cleaned_data
             post = Post(
-                title=cleaned_data['title'],
-                quote=cleaned_data['quote'],
+                
                 content=cleaned_data['content'],
                 image=cleaned_data['image'],
                 author=request.user,
